@@ -11,13 +11,12 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name="computer_system_3")
 @Inheritance(strategy= InheritanceType.JOINED)
 @DiscriminatorColumn(name="CompanyType", discriminatorType= DiscriminatorType.INTEGER)
-public class ComputerSystem {
+public abstract class ComputerSystem
+{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;

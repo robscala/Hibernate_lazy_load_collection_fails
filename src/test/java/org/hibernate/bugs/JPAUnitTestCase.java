@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class ManufacturerTest
+public class JPAUnitTestCase
 {
     private EntityManagerFactory entityManagerFactory;
 

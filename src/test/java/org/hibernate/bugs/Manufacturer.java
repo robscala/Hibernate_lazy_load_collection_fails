@@ -7,10 +7,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name="manufacturer")
 @DiscriminatorValue("1")
 public class Manufacturer extends Company {
     @OneToOne(orphanRemoval=true, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
