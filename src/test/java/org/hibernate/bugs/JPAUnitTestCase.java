@@ -12,8 +12,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class JPAUnitTestCase
-{
+public class JPAUnitTestCase {
     private EntityManagerFactory entityManagerFactory;
 
     @Before
@@ -23,11 +22,13 @@ public class JPAUnitTestCase
         // Populate records in the database:
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         System.out.println("Creating database records");
-        ManufacturerComputerSystem computerSystem = new ManufacturerComputerSystem();
-        Manufacturer manufacturer = new Manufacturer(computerSystem);
-        manufacturer.addPerson(new Person("Henry"));
+        ManufacturerCompany manufacturerCompany = new ManufacturerCompany();
+        manufacturerCompany.setComputerSystem(new ManufacturerComputerSystem());
+        Person person = new Person();
+        person.setFirstName("Henry");
+        manufacturerCompany.addPerson(person);
         entityManager.getTransaction().begin();
-        entityManager.persist(manufacturer);
+        entityManager.persist(manufacturerCompany);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
@@ -41,14 +42,14 @@ public class JPAUnitTestCase
     public void refresh_test() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Manufacturer manufacturer = entityManager.find(Manufacturer.class, 1L);
+        System.out.println("Finding manufacturer");
+        ManufacturerCompany manufacturerCompany = entityManager.find(ManufacturerCompany.class, 1L);
         System.out.println("Refreshing manufacturer");
-        entityManager.refresh(manufacturer);
+        entityManager.refresh(manufacturerCompany);
         System.out.println("Calling manufacturer.getPeople()");
-        List<Person> people = manufacturer.getPeople();
+        List<Person> people = manufacturerCompany.getPeople();
         System.out.println("Calling people.get(0)");
-        Person person1 = people.get(0);
-        System.out.println("Person is in EM: " + entityManager.contains(person1));
+        Person person1 = people.get(0);     // <-- This is where it fails.
         System.out.println("Changing name");
         String newFirstName = "name1".equals(person1.getFirstName()) ? "name2" : "name1";
         entityManager.getTransaction().begin();

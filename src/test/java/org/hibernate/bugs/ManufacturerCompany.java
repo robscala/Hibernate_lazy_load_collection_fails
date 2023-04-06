@@ -10,15 +10,12 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("1")
-public class Manufacturer extends Company {
+public class ManufacturerCompany extends Company {
     @OneToOne(orphanRemoval=true, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "COMPUTERSYSTEM_ID", foreignKey = @ForeignKey())
     private ManufacturerComputerSystem computerSystem;
 
-    public Manufacturer() {
-    }
-
-    public Manufacturer(ManufacturerComputerSystem computerSystem) {
+    public void setComputerSystem(ManufacturerComputerSystem computerSystem) {
         this.computerSystem = computerSystem;
         computerSystem.setOwner(this);
     }

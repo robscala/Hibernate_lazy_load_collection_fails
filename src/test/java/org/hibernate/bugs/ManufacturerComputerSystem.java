@@ -7,7 +7,4 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("2")
 public class ManufacturerComputerSystem extends ComputerSystem
 {
-    public ManufacturerComputerSystem()
-    {
-    }
 }

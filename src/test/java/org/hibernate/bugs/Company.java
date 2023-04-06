@@ -22,7 +22,6 @@ public abstract class Company {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long id;
 
-    @SuppressWarnings("FieldMayBeFinal")
     @OneToMany(mappedBy="company", orphanRemoval=true, cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private List<Person> people = new ArrayList<>();
 

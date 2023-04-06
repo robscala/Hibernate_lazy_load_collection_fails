@@ -21,19 +21,12 @@ public class Person {
     @JoinColumn(name = "COMPANY_ID", foreignKey = @ForeignKey())
     private Company company;
 
-    public Person() {
-    }
-
-    public Person(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public void setCompany(Company company) {
